@@ -123,7 +123,7 @@ $(function(){
   $('.modal_open').click(function(){
 
     // 固定用クラスを付与
-  	$('body').addClass('modal-fixed');
+  	//$('body').addClass('modal-fixed');
  
     // 黒い背景をbody内に追加
     $('body').append('<div class="modal_bg"></div>');
@@ -188,12 +188,16 @@ $(function(){
     });
  
     // ウィンドウがリサイズされたらモーダルの位置を再計算する
+    let windowWidth = $(window).width();
     $(window).on('resize', function(){
+      if (windowWidth == $(window).height()){
+        return;
+      }
       if (ua.indexOf("iPhone") < 0 && ua.indexOf("iPad") < 0 && ua.indexOf("Android") < 0){
         modalResize();
       }
     });
-    if (ua.indexOf("iPhone") >= 0 || ua.indexOf("iPad") >= 0 || ua.indexOf("Android") >= 0){
+      if (ua.indexOf("iPhone") >= 0 || ua.indexOf("iPad") >= 0 || ua.indexOf("Android") >= 0){
       $(window).on('orientationchange', function(){
         modalResize();
       });
